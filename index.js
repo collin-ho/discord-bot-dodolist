@@ -19,7 +19,7 @@ client.once(Events.ClientReady, () => {
 });
 
 client.on(Events.MessageCreate, async (msg) => {
-  console.log('💡DEBUG messageCreate:', message.author.tag, message.content);
+  console.log('💡DEBUG messageCreate:', msg.author.tag, msg.content);
   if (msg.channelId !== HUB_CHANNEL_ID || msg.author.bot) return;
   if (msg.mentions.roles.size > 0) {
     await fetch(MAKE_WEBHOOK_URL, {
@@ -35,6 +35,7 @@ client.on(Events.MessageCreate, async (msg) => {
     });
   }
 });
+
 
 client.on(Events.MessageReactionAdd, async (reaction, user) => {
   // if the reaction or its message is partial, fetch the full data
